@@ -15,50 +15,49 @@
 ##    </div>
 ##</div>
 
-        <div class="row"  href="#start">
-
+<div class="row">
     <div class="profile-page">
+        <div class="col-sm-3 nav-list-spy">
+            <div class="gs-sidebar hidden-print hidden-xs panel panel-default" data-spy="affix"
+                 data-offset-top="60" data-offset-bottom="268" data-target-top="page-header">
+                <ul class="nav nav-stacked nav-pills gs-sidenav" style="min-width: 210px">
+                    <li><a href="#">Profile Information</a></li>
+                    <li><a href="${ web_url_for('user_account') }">Account Settings</a></li>
+                    <li><a href="${ web_url_for('user_addons') }">Configure Add-ons</a></li>
+                    <li><a href="${ web_url_for('user_notifications') }">Notifications</a></li>
+                </ul>
+            </div><!-- end sidebar -->
+        </div>
+        <div class="col-sm-9">
+        <h2 class="page-header">Profile Information</h2>
 
-    <div class="col-sm-3 nav-list-spy">
-        <div class="gs-sidebar hidden-print hidden-xs panel panel-default" data-spy="affix" data-offset-top="60" data-offset-bottom="268" data-target-top="page-header">
-            <ul class="nav nav-stacked nav-pills gs-sidenav" style="min-width: 210px">
-                <li><a href="#">Profile Information</a></li>
-                <li><a href="${ web_url_for('user_account') }">Account Settings</a></li>
-                <li><a href="${ web_url_for('user_addons') }">Configure Add-ons</a></li>
-                <li><a href="${ web_url_for('user_notifications') }">Notifications</a></li>
-            </ul>
-        </div><!-- end sidebar -->
-    </div>
-    <div class="col-sm-9 col-md-7">
-    <h2>Profile Information</h2>
+            <div id="userProfile">
 
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#names" data-toggle="tab">Name</a></li>
+                    <li><a href="#social" data-toggle="tab">Social</a></li>
+                    <li><a href="#jobs" data-toggle="tab">Employment</a></li>
+                    <li><a href="#schools" data-toggle="tab">Education</a></li>
+                </ul>
 
+                <div class="tab-content" id="containDrag">
 
-        <div id="userProfile">
+                    <div class="tab-pane active" id="names">
+                        <div data-bind="template: {name: 'profileName'}"></div>
+                    </div>
 
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#names" data-toggle="tab">Name</a></li>
-                <li><a href="#social" data-toggle="tab">Social</a></li>
-                <li><a href="#jobs" data-toggle="tab">Employment</a></li>
-                <li><a href="#schools" data-toggle="tab">Education</a></li>
-            </ul>
+                    <div class="tab-pane" id="social">
+                        <div data-bind="template: {name: 'profileSocial'}"></div>
+                    </div>
 
-            <div class="tab-content" id="containDrag">
+                    <div class="tab-pane" id="jobs">
+                        <div data-bind="template: {name: 'profileJobs'}"></div>
+                    </div>
 
-                <div class="tab-pane active" id="names">
-                    <div data-bind="template: {name: 'profileName'}"></div>
-                </div>
+                    <div class="tab-pane" id="schools">
+                        <div data-bind="template: {name: 'profileSchools'}"></div>
+                    </div>
 
-                <div class="tab-pane" id="social">
-                    <div data-bind="template: {name: 'profileSocial'}"></div>
-                </div>
-
-                <div class="tab-pane" id="jobs">
-                    <div data-bind="template: {name: 'profileJobs'}"></div>
-                </div>
-
-                <div class="tab-pane" id="schools">
-                    <div data-bind="template: {name: 'profileSchools'}"></div>
                 </div>
 
             </div>
@@ -66,17 +65,15 @@
         </div>
 
     </div>
-
+    ## TODO: Review and un-comment
+    ##<div mod-meta='{
+    ##        "tpl": "util/render_keys.mako",
+    ##        "uri": "/api/v1/settings/keys/",
+    ##        "replace": true,
+    ##        "kwargs" : {
+    ##            "route": "/settings/"}
+    ##        }'></div>
 </div>
-## TODO: Review and un-comment
-##<div mod-meta='{
-##        "tpl": "util/render_keys.mako",
-##        "uri": "/api/v1/settings/keys/",
-##        "replace": true,
-##        "kwargs" : {
-##            "route": "/settings/"}
-##        }'></div>
-
 <%include file="include/profile/names.mako" />
 <%include file="include/profile/social.mako" />
 <%include file="include/profile/jobs.mako" />
@@ -104,4 +101,3 @@
 </script>
 <script src=${"/static/public/js/profile-settings-page.js" | webpack_asset}></script>
 </%def>
-</div>
