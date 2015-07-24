@@ -110,18 +110,21 @@ class NodeSerializer(JSONAPISerializer):
     def get_node_count(self, obj):
         auth = self.get_user_auth(self.context['request'])
         nodes = [node for node in obj.nodes if node.can_view(auth) and node.primary]
-        return len(nodes)
+        return self.get_obj_data(nodes)
 
     def get_contrib_count(self, obj):
-        return len(obj.contributors)
+        return self.get_obj_data(obj.contributors)
 
     def get_registration_count(self, obj):
         auth = self.get_user_auth(self.context['request'])
         registrations = [node for node in obj.node__registrations if node.can_view(auth)]
-        return len(registrations)
+        return self.get_obj_data(registrations)
 
     def get_pointers_count(self, obj):
-        return len(obj.nodes_pointer)
+        return self.get_obj_data(obj.nodes_pointer)
+
+    def get_obj_data(self, objects):
+        return len(objects)
 
     @staticmethod
     def get_tags(obj):
